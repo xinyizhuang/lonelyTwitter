@@ -48,6 +48,10 @@ public abstract class Tweet implements Tweetable {
     public String getMessage(){
         return message;
     }
+    @Override
+    public String toString(){
+        return date.toString() + " | " + message;
+     }
 
     public ArrayList<Mood> getMoods(){
         return mood;

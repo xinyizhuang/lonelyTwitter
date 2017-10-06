@@ -27,6 +27,10 @@ public class ElasticsearchTweetController {
 
                 try {
                     // where is the client?
+                    DocumentResult execute = client.execute(index);
+                    if(execute.isSucceeded()){
+                        tweet.setId(execute.getId());
+                    }
                 }
                 catch (Exception e) {
                     Log.i("Error", "The application failed to build and send the tweets");
@@ -38,17 +42,37 @@ public class ElasticsearchTweetController {
     }
 
     // TODO we need a function which gets tweets from elastic search
-/*    public static class GetTweetsTask extends AsyncTask<String, Void, ArrayList<NormalTweet>> {
+    public static class GetTweetsTask extends AsyncTask<String, Void, ArrayList<NormalTweet>> {
         @Override
         protected ArrayList<NormalTweet> doInBackground(String... search_parameters) {
             verifySettings();
 
             ArrayList<NormalTweet> tweets = new ArrayList<NormalTweet>();
 
-                // TODO Build the query
+
+            String query = "{\n" +
+                    "    \"query\" : {\n" +
+                    "        \"term\" : { \"message\" : \""  +  search_parameters[0] + "\"} \n" +
+                    "    }\n" +
+                    "}";
+
+
+            // TODO Build the query
+            Search search = new Search.Builder(query)
+                    .addIndex("testing")
+                    .addType("tweet")
+                    .build();
 
             try {
-               // TODO get the results of the query
+                // TODO get the results of the query
+                SearchResult result = client.execute(search);
+                if (result.isSucceeded()) {
+                    List<NormalTweet> foundTweets = result.getSourceAsObjectList(NormalTweet.class);
+                    tweets.addAll(foundTweets);
+                }
+                else {
+                    Log.i("Error","the search query failed to find any tweets that matched.");
+                }
             }
             catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
@@ -56,7 +80,7 @@ public class ElasticsearchTweetController {
 
             return tweets;
         }
-    }*/
+    }
 
 
 

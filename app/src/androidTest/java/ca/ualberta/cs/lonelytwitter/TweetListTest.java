@@ -55,18 +55,13 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
 
     }
 
-    public ArrayList<Tweet> testGetTweets() {
+    public void testSorting() {
         TweetList tweets = new TweetList();
         Tweet tweet = new NormalTweet("a");
         tweets.add(tweet);
         Tweet tweet1 = new NormalTweet("b");
         tweets.add(tweet1);
-        Tweet tweet2 = new NormalTweet("c");
-        tweets.add(tweet2);
-
-        
-        Collections.sort(Tweet tweets);
-
+        assertTrue(tweets.getTweets().get(1).getDate().after(tweets.getTweets().get(0).getDate()));
 
     }
 }

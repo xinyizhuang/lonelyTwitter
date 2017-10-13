@@ -3,6 +3,7 @@ package ca.ualberta.cs.lonelytwitter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.DuplicateFormatFlagsException;
 
 /**
@@ -46,6 +47,12 @@ public class TweetList {
 
 
     public ArrayList<Tweet> getTweets() {
+
+        Collections.sort(tweets, new Comparator<Tweet>() {
+            public int compare(Tweet t1, Tweet t2) {
+                return t1.getDate().compareTo(t2.getDate());
+            }
+        });
         return this.tweets;
     }
 

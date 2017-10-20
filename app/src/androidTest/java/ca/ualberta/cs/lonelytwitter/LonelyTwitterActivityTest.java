@@ -61,7 +61,7 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2<
         Tweet tweet = (Tweet) oldTweetsList.getItemAtPosition(0);
         assertEquals("Test Tweet!", tweet.getMessage());
 
-        solo.clickInList(0);
+        solo.clickInList(1);
         solo.assertCurrentActivity("wrong activity", EditTweetActivity.class);
 
         assertTrue(solo.waitForText("New Activity", 1, 1000));

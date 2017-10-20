@@ -10,9 +10,16 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="82dp"
-        android:layout_marginTop="143dp"
-        android:text="New Activity"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="90dp"
+        android:text="New Activity"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault"
+        android:visibility="visible" />
+
+
+
 </RelativeLayout>
